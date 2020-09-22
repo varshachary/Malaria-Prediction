@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<div class="container mt-3">
+    <div class="mt-2">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'portal:home' %}">Portal</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'portal:patient_list' %}">Patients</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Patient</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="card bg-light">
+        <div class="card-body">
+            <h2>Patient: {{ patient.full_name }}</h2>
+            <p><strong>Card No: </strong>{{ patient.id }}</p>
+            <p><strong>Gender: </strong>{{ patient.gender }}</p>
+            <p><strong>Date of Birth:</strong> {{ patient.date_of_birth }}</p>
+            <p><strong>Registered On: </strong>{{ patient.registered_on }}</p>
+        </div>
+    </div>
+
+    <h2 class="mt-2">ECG History</h2>
+
+        <div class="row">
+            <div class="col-12">
+                
+                {% if patient.report_set.exists %}
+                    <div class="table-responsive">
+                        <table class="table table-hover ">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Diagnosis Date</th>
+                                <th scope="col">Has Malaria</th>
+                                <th scope="col">Prescribed Drugs</th>
+                                <th scope="col">Adhered To Treatment</th>
+                                <th scope="col">Take Adherence Test</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            
+                            {% for report in patient.report_set.all %}
+                                <tr>
+                                    <td>{{ report.generated_on }}</td>
+                                    <td>{{ report.has_malaria }}</td>
+                                    <td>Artemether &amp; Lumefantrine</td>
+                                    <td>{{ report.adhered_to_treatment }}</td> 
+                                    {% if report.has_malaria and report.adhered_to_treatment is None %}
+                                        <td><a href="{% url 'portal:adherence' report.id %}" class="btn btn-danger">Perform Test</a></td>
+                                    {% endif %}   
+                                </tr>
+                            {% endfor %}
+                                
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="alert alert-info messages">
+                        <span class="alert-info">Patient has never been diagnosed!</span>
+                    </div>
+                {% endif %}
+                    
+                
+            </div>
+        </div>  
+</div>
+{% endblock content %}
+    

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+        <div class="mt-2">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'portal:home' %}">Portal</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Patients</li>
+                </ol>
+            </nav>
+        </div>
+    <h2>Patients</h2>
+
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Card No</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">View</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                {% for patient in patient_list %}
+                    <tr>
+                        <td>{{ patient.id }}</td>
+                        <td>{{ patient.full_name }}</td>
+                        <td><a href="{% url 'portal:patient_detail' patient.pk %}" class="btn btn-info">View</a></td>
+                    </tr>
+                {% endfor %}
+                    
+                
+                </tbody>
+            </table>
+            </div>
+        </div>  
+</div>  
+
+{% endblock content %}
+    

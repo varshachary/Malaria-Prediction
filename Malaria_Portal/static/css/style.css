@@ -1,0 +1,11 @@
+.jmb-bg {
+    background: url('../images/malaria.jpg') no-repeat no-repeat center;
+    background-size: cover;
+    color: white;
+    text-shadow: 1px 1px 15px #000;
+}
+
+.jmb-light {
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.2)
+}

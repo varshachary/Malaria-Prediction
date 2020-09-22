@@ -1,0 +1,24 @@
+{% url 'home' as home %}
+{% url 'about' as about %}
+{% url 'login' as login %}
+{% url 'portal:home' as portal_home %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <a class="navbar-brand" href="/"><i>&#x1f3e5;</i><span class="pl-1">Hopewell Clinic</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link {% if request.path == home %}active{% endif %}" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link {% if request.path == portal_home %}active{% endif %}" href="{% url 'portal:home' %}">Portal</a>
+        
+        {% if request.user.is_authenticated %}
+          <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+          <a class="nav-item nav-link {% if request.path == login %}active{% endif %}" href="{% url 'login' %}">Login</a>
+        {% endif %}
+          
+      </div>
+    </div>
+  </nav>

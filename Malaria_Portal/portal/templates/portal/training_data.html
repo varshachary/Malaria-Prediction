@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="jumbotron text-center">
+    <h1 class="display-6">Training Data</h1>
+    <p class="lead">Download the Training Data for diagnosis and adherence tests.</p>
+</div>
+
+<div class="container">
+    <h3>Downloads</h3>
+    <div class="row">
+        <div class="col-12">
+            <a href="{% static 'resources/malaria_prediction_data.csv' %}" class="btn btn-outline-warning btn-lg">Diagnosis Data</a>
+            <a href="{% static 'resources/adherence_questionnaire.csv' %}" class="btn btn-outline-success btn-lg">Adherence Data</a>
+
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+    

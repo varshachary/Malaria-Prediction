@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="mt-2">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'portal:home' %}">Portal</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Diagnosis</li>
+            </ol>
+        </nav>
+    </div>
+
+    <h2>Diagnosis</h2>
+
+    {% include "portal/snippets/questions_form.html" with test_questions=questions is_diagnosis=True %}
+        
+</div>
+{% endblock content %}
+    

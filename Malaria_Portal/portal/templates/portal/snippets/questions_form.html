@@ -1,0 +1,38 @@
+
+<form action="" method="post">
+    {% csrf_token %}
+    
+    {% if is_diagnosis %}
+        <label for="patient">Select patient to Diagnose</label>
+        <select name="patient" class="form-control" id="patient" required>
+            <option value selected>Select Patient</option>
+            {% for p in patients %}
+                <option value="{{ p.id }}">{{ p.full_name }}</option>
+            {% endfor %}
+        </select>
+    {% endif %}      
+
+    <div class="row">
+    {% for q in test_questions %}
+        <div class="col-sm-6 col-md-4">
+            <div class="card bg-light" style="margin: 20px 0;">
+                <div class="card-body">
+                    <h4 class="card-title">{{ q.question_text }}</h4>
+                    <label for="yes{{forloop.counter}}">
+                        <input type="radio" name="choice{{forloop.counter}}" id="yes{{forloop.counter}}" value="1" required />
+                        Yes
+                    </label><br />
+                    <label for="no{{forloop.counter}}">
+                        <input type="radio" name="choice{{forloop.counter}}" id="no{{forloop.counter}}" value="0" required />
+                        No
+                    </label><br />
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="d-flex justify-content-end" style="margin: 40px 0;">
+        <input type="submit" class="btn btn-info btn-lg" value="Submit" />
+    </div>
+</form>
+        

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="jumbotron text-center">
+    <h1 class="display-6">Portal</h1>
+    <p class="lead">Manage your patients for ECG diagnosis</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4">
+            <a href="{% url 'portal:patient_add' %}">
+                <div class="card text-white bg-info mb-3 p-4 text-center">
+                    <div class="card-body">
+                            <h2 class="card-text text-light">Add Patient</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <a href="{% url 'portal:patient_list' %}">
+                <div class="card text-white bg-info mb-3 p-4 text-center">
+                    <div class="card-body">
+                            <h2 class="card-text text-light">Patient's History</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <a href="{% url 'portal:diagnosis' %}">
+                <div class="card text-white bg-info mb-3 p-4 text-center">
+                    <div class="card-body">
+                            <h2 class="card-text text-light">Diagnose Patient</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+{% endblock content %}
+    
